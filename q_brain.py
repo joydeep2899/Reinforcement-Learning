@@ -8,11 +8,11 @@ class Q_brain:
               self.i=0
               self.stateind=[]
               self.stateind.append(self.i)
-              self.q_table=pd.DataFrame(columns=[0,1])
+              self.q_table=pd.DataFrame(columns=self.actions)
        def choose_action(self,observations):
           if (np.random.uniform() < 0.9):
             
-             print('reached1\n')    
+              
              self.check_if_state_exist(observations)
 
              state_action=self.q_table.loc[observations,:]
@@ -34,7 +34,7 @@ class Q_brain:
                if state not in self.q_table.index:
                      self.q_table = self.q_table.append(pd.Series([0]*len(self.actions),index=self.q_table.columns,name=state,))
            except (KeyError,TypeError,ValueError): 
-                    print('ignore')
+                    
                     pass
      
 

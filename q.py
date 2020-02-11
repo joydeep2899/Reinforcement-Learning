@@ -8,10 +8,12 @@ from q_brain import Q_brain
 
 
 if __name__ == "__main__":
- env = gym.make('CartPole-v0')
- actions=env.action_space.sample()
+ env = gym.make('ChopperCommand-ram-v0')
+ #actions=env.action_spaces.sample()
+ n=17   #no of actions
+ actions=list(range(n))
  print(actions)
- q_brain=Q_brain(0.01,[0,1],0.89)
+ q_brain=Q_brain(0.01,actions,0.9)
     
  for episode in range(100):
       observation=env.reset()
@@ -28,7 +30,7 @@ if __name__ == "__main__":
 
         observation=observation_
         print('Observation {0} \nreward {1} \ndone {2}\n'.format(observation,reward,done))
-        print('Cart Position {0} Cart Velocity {1}  Pole Angle {2}  Pole Velocity At Tip {3}\n'.format(observation[0],observation[1],observation[2],observation[3]))
+       
         if done: 
            print('episode finished ')
            break
